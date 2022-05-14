@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "736085914915",
+    "project_id": "flutter-auth-1fe38",
+    "storage_bucket": "flutter-auth-1fe38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736085914915:android:aeb6e37c850c0e19254896",
+        "android_client_info": {
+          "package_name": "com.imt.intelligent_money_tracker_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "736085914915-pr1ek9p7s8i6e053hf3hjaf6hkd08sdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQcJ2XK7Z0LQ0Q7RkloE3ygp6EBOkPBBQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "736085914915-pr1ek9p7s8i6e053hf3hjaf6hkd08sdn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
