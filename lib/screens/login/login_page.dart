@@ -41,7 +41,10 @@ class LoginPage extends StatelessWidget {
             ),
           ),
           ElevatedButton(
-            child: Text('Login'),
+            child: const Text(
+              'Login',
+              style: TextStyle(fontSize: 16),
+            ),
             onPressed: () {
               authService.singInWithEmailAndPassword(
                 emailController.text,
@@ -50,7 +53,10 @@ class LoginPage extends StatelessWidget {
             },
           ),
           ElevatedButton(
-            child: Text('Register'),
+            child: const Text(
+              'Register',
+              style: TextStyle(fontSize: 16),
+            ),
             onPressed: () {
               Navigator.pushNamed(context, '/register');
             },

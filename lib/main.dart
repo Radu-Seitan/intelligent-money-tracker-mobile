@@ -5,6 +5,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:intelligent_money_tracker_mobile/core/constants.dart';
 import 'package:intelligent_money_tracker_mobile/core/custom_colors.dart';
+import 'package:intelligent_money_tracker_mobile/screens/add_expense/add_expense_page.dart';
+import 'package:intelligent_money_tracker_mobile/screens/add_income/add_income_page.dart';
 import 'package:intelligent_money_tracker_mobile/screens/home/home_page.dart';
 import 'package:intelligent_money_tracker_mobile/screens/login/login_page.dart';
 import 'package:intelligent_money_tracker_mobile/screens/register/register_page.dart';
@@ -59,8 +61,10 @@ class MyApp extends StatelessWidget {
               initialRoute: '/',
               routes: {
                 '/': (context) => Wrapper(),
-                '/login': (context) => LoginPage(),
-                '/register': (context) => RegisterPage(),
+                '/login': (context) => const LoginPage(),
+                '/register': (context) => const RegisterPage(),
+                '/addIncome': (context) => const AddIncomePage(),
+                '/addExpense': (context) => const AddExpensePage(),
               },
             ),
           );

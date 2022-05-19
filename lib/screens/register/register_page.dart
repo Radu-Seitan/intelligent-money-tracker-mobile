@@ -41,7 +41,10 @@ class RegisterPage extends StatelessWidget {
             ),
           ),
           ElevatedButton(
-            child: Text('Register'),
+            child: const Text(
+              'Register',
+              style: TextStyle(fontSize: 16),
+            ),
             onPressed: () async {
               await authService.createUserWithEmailAndPassword(
                 emailController.text,
