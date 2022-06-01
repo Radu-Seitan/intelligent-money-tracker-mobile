@@ -1,6 +1,16 @@
-class User{
-  late final String uid;
-  late final String? email;
+//TO-DO: model user entity after db user model
+class User {
+  late final String id;
+  late final String? username;
+  late final int? sum;
 
-  User(this.uid,this.email);
+  User({required this.id, required this.username, this.sum});
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(id: json['id'], username: json['name'], sum: json['sum']);
+  }
 }
+
+//Test account
+//ana@yahoo.com
+//123456
