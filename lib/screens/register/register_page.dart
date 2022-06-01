@@ -11,6 +11,8 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
+    final TextEditingController usernameController = TextEditingController();
+    final TextEditingController sumController = TextEditingController();
 
     final authService = Provider.of<AuthService>(context);
     return Scaffold(
@@ -22,7 +24,7 @@ class RegisterPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(4.0),
             child: TextField(
               controller: emailController,
               decoration: const InputDecoration(
@@ -31,12 +33,32 @@ class RegisterPage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(4.0),
             child: TextField(
               controller: passwordController,
               obscureText: true,
               decoration: const InputDecoration(
                 labelText: 'Password',
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TextField(
+              controller: usernameController,
+              obscureText: true,
+              decoration: const InputDecoration(
+                labelText: 'Username',
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TextField(
+              controller: sumController,
+              obscureText: true,
+              decoration: const InputDecoration(
+                labelText: 'Sum',
               ),
             ),
           ),
@@ -49,6 +71,8 @@ class RegisterPage extends StatelessWidget {
               await authService.createUserWithEmailAndPassword(
                 emailController.text,
                 passwordController.text,
+                usernameController.text,
+                double.parse(sumController.text),
               );
               Navigator.pop(context);
             },
