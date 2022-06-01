@@ -1,7 +1,7 @@
 class User {
   late final String id;
   late final String? username;
-  late final int? sum;
+  late final double? sum;
 
   User({required this.id, required this.username, this.sum});
 

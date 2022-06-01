@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(_title),
@@ -20,7 +21,7 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            'Total sum: ',
+            'Total sum: ${authService.getUser(authService.userId).then((value) => value.sum)}',
             style: TextStyle(fontSize: 25),
           ),
           ElevatedButton(
