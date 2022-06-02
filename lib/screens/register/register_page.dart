@@ -18,7 +18,7 @@ class RegisterPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(_title),
-        leading: Image.asset('assets/img/logo.png'),
+        leading: Image.asset('assets/img/logo2.png'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -6,6 +6,6 @@ class User {
   User({required this.id, required this.username, this.sum});
 
   factory User.fromJson(Map<String, dynamic> json) {
-    return User(id: json['id'], username: json['name'], sum: json['sum']);
+    return User(id: json['id'], username: json['username'], sum: json['sum'].toDouble());
   }
 }

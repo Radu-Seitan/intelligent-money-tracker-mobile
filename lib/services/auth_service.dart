@@ -31,7 +31,7 @@ class AuthService {
     return userFromDb;
   }
 
-  Future<User> getUser(String id) async {
+  Future<User> getUser(String? id) async {
     try {
       var response = await get(Uri.parse('$_baseUri/$_resourceName/$id'));
       var decodedBody = jsonDecode(response.body);

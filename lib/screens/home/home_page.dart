@@ -12,49 +12,59 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(_title),
-        leading: Image.asset('assets/img/logo.png'),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            'Total sum: ${authService.getUser(authService.userId).then((value) => value.sum)}',
-            style: TextStyle(fontSize: 25),
-          ),
-          ElevatedButton(
-            child: const Text(
-              'Add income',
-              style: TextStyle(fontSize: 16),
+    return FutureBuilder<double?>(
+      future:
+          authService.getUser(authService.userId).then((value) => value.sum),
+      builder: (BuildContext context, AsyncSnapshot<double?> snapshot) {
+        if (snapshot.hasData) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(_title),
+              leading: Image.asset('assets/img/logo2.png'),
             ),
-            onPressed: () {
-              Navigator.pushNamed(context, '/addIncome');
-            },
-          ),
-          ElevatedButton(
-            child: const Text(
-              'Add expense',
-              style: TextStyle(fontSize: 16),
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  'Total sum: ${snapshot.data}',
+                  style: TextStyle(fontSize: 25),
+                ),
+                ElevatedButton(
+                  child: const Text(
+                    'Add income',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/addIncome');
+                  },
+                ),
+                ElevatedButton(
+                  child: const Text(
+                    'Add expense',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/addExpense');
+                  },
+                ),
+                Center(
+                  child: ElevatedButton(
+                    child: const Text(
+                      'Logout',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    onPressed: () async {
+                      await authService.signOut();
+                    },
+                  ),
+                ),
+              ],
             ),
-            onPressed: () {
-              Navigator.pushNamed(context, '/addExpense');
-            },
-          ),
-          Center(
-            child: ElevatedButton(
-              child: const Text(
-                'Logout',
-                style: TextStyle(fontSize: 16),
-              ),
-              onPressed: () async {
-                await authService.signOut();
-              },
-            ),
-          ),
-        ],
-      ),
+          );
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
+      },
     );
   }
 }
