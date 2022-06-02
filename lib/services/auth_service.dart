@@ -9,11 +9,13 @@ class AuthService {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
   final String _baseUri = 'http://34.118.9.214:7165';
   final String _resourceName = 'api/Users';
+  late String userId;
 
   User? _userFromFire(auth.User? user) {
     if (user == null) {
       return null;
     }
+    userId = user.uid;
     return User(id: user.uid, username: user.displayName);
   }
 
@@ -29,7 +31,7 @@ class AuthService {
     return userFromDb;
   }
 
-  Future<User> getUser(String id) async {
+  Future<User> getUser(String? id) async {
     try {
       var response = await get(Uri.parse('$_baseUri/$_resourceName/$id'));
       var decodedBody = jsonDecode(response.body);

@@ -1,4 +1,11 @@
+import 'dart:convert';
+
+import 'package:fimber_io/fimber_io.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:provider/provider.dart';
+
+import '../../services/auth_service.dart';
 
 class AddIncomeWidget extends StatefulWidget {
   const AddIncomeWidget({Key? key}) : super(key: key);
@@ -8,7 +15,10 @@ class AddIncomeWidget extends StatefulWidget {
 }
 
 class _AddIncomeWidgetState extends State<AddIncomeWidget> {
+  final String _baseUri = 'http://34.118.9.214:7165';
+  final String _resourceName = 'api/Incomes';
   final TextEditingController incomeController = TextEditingController();
+
   List<String> categories = [
     'Salary',
     'Stocks',
@@ -18,6 +28,67 @@ class _AddIncomeWidgetState extends State<AddIncomeWidget> {
     'Other'
   ];
   String? dropdownValue;
+
+  Future postIncome(double quantity) async {
+    final authService = Provider.of<AuthService>(context, listen: false);
+    late int categoryInt;
+    switch (dropdownValue) {
+      case 'Salary':
+        {
+          categoryInt = 0;
+        }
+        break;
+
+      case 'Stocks':
+        {
+          categoryInt = 1;
+        }
+        break;
+
+      case 'Sales':
+        {
+          categoryInt = 2;
+        }
+        break;
+
+      case 'CryptoCurrency':
+        {
+          categoryInt = 3;
+        }
+        break;
+
+      case 'Gambling':
+        {
+          categoryInt = 4;
+        }
+        break;
+
+      case 'Other':
+        {
+          categoryInt = 5;
+        }
+        break;
+    }
+    try {
+      // call backend api and post user entity in db
+      var response = await post(
+        Uri.parse('$_baseUri/$_resourceName'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+          <String, Object?>{
+            'quantity': quantity,
+            'category': categoryInt,
+            'userId': authService.userId,
+          },
+        ),
+      );
+    } catch (ex, stackTrace) {
+      Fimber.e('Unhandled exception', ex: ex, stacktrace: stackTrace);
+      throw Exception('Failed to post income.');
+    }
+  }
 
   @override
   void initState() {
@@ -60,7 +131,10 @@ class _AddIncomeWidgetState extends State<AddIncomeWidget> {
               'Add income',
               style: TextStyle(fontSize: 16),
             ),
-            onPressed: () {
+            onPressed: () async {
+              await postIncome(
+                double.parse(incomeController.text),
+              );
               Navigator.pop(context);
             },
           ),
