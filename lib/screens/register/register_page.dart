@@ -46,7 +46,6 @@ class RegisterPage extends StatelessWidget {
             padding: const EdgeInsets.all(4.0),
             child: TextField(
               controller: usernameController,
-              obscureText: true,
               decoration: const InputDecoration(
                 labelText: 'Username',
               ),
@@ -56,7 +55,6 @@ class RegisterPage extends StatelessWidget {
             padding: const EdgeInsets.all(4.0),
             child: TextField(
               controller: sumController,
-              obscureText: true,
               decoration: const InputDecoration(
                 labelText: 'Sum',
               ),
